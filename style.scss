@@ -1,8 +1,10 @@
+
 /*CSS Variables*/
 :root {
-    --primaty: #ddd;
+    --primary: #ddd;
     --dark: #333;
     --light: #fff;
+    --body: #ccc;
     --shadow: 0 1px 5px rgba(104,104,104, 0.8);
 }
 
@@ -13,7 +15,7 @@ html {
 }
 
 body {
-    background: #ccc;
+    background: var(--body);
     margin: 30px 50px;
     line-height: 1.4;
 }
@@ -87,6 +89,37 @@ img {
     background-size: cover;
     background-position: center;
     padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    box-shadow: var(--shadow);
+
+    h1 {
+        font-size: 4rem;
+        margin-bottom: 0;
+        color: var(--light);
+    }
+
+    p {
+        font-size: 1.3rem;
+        margin-top: 0;
+        color: var(--light);
+    }
+}
+
+/* Top Box */
+.top-box {
+    background: var(--primary);
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+
+    .price {
+        font-size: 2.5rem;
+    }
 }
 
 .top-box-a {
@@ -95,4 +128,99 @@ img {
 
 .top-box-b {
     grid-area: top-box-b;
+}
+
+/* Boxes */
+
+.boxes {
+    display: grid;
+    grid-gap: 20px;
+
+    //fr is a fractional unit, and 1fr is for 1 part
+    //of the available space.
+    //auto-fit in repeat(), means that number of columns is 
+    //defined auto. base on items width
+    //minmax(), let us define a mix end max width of each colums
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+    .box {
+        background: var(--primary);
+        text-align: center;
+        padding: 1.5rem 2rem;
+        box-shadow: var(--shadow);
+    }
+}
+
+/* Info */
+
+.info {
+    background: var(--primary);
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 3rem;
+
+    h2 {
+        margin-top: 0;
+    }
+
+}
+
+/* Portfolio */
+.portfolio {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+    img {
+        width: 100%;
+        box-shadow: var(--shadow);
+
+    }
+} 
+
+/* Footer */
+footer {
+    margin-top: 2rem;
+    background: var(--dark);
+    color: var(--light);
+    text-align: center;
+    padding: 1rem;
+} 
+
+@media(max-width: 700px) {
+    .top-container {
+        grid-template-areas: 
+        'showcase showcase'
+        'top-box-a top-box-b';
+    }
+
+    .showcase h1 {
+        font-size: 2.5rem;
+    }
+
+    .main-nav ul {
+        grid-template-columns: 1fr;
+    }
+
+    .info {
+        grid-template-columns: 1fr;
+
+        .btn {
+            display: block;
+            text-align: center;
+            margin: auto;
+        }
+    }
+}
+
+@media(max-width: 505px) {
+    .top-container {
+        grid-template-areas: 
+        'showcase'
+        'top-box-a' 
+        'top-box-b';
+    }
+
 }
